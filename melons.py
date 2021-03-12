@@ -3,6 +3,7 @@
 
 class AbstractMelonOrder():
     """An abstract base class"""
+    # passing  common arguments between Domestic and International sub classes
 
     def __init__(self, species, qty, order_type, tax):
 
@@ -31,13 +32,27 @@ class AbstractMelonOrder():
         self.shipped = True
 
 
+class GovernmentMelonOrder(AbstractMelonOrder):
+    """Government Melon Information"""
+    # Gorvnment will not pay tax 
+    
+    def __init__(self, species, qty):
+        super().__init__(species, qty, "Government", 0.0)
+
+    passed_inspection = False
+
+    def mark_inspection(self):   
+        self.passed_inspection = True
+
+
 
 class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
-    
-    
-    
+
+    # we are inhereting 
     def __init__(self, species, qty):
+
+        # we are inherting __init__ from Abstract class
         super().__init__(species, qty, "Domestic", 0.08)
 
 
